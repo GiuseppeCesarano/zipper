@@ -67,10 +67,10 @@ std::vector<std::filesystem::path> filesFromDirectory(const std::filesystem::pat
 
     for (auto& entry : std::filesystem::recursive_directory_iterator(path))
     {
-	if(!entry.is_directory())
-	{
-	    files.emplace_back(entry.path());
-	}
+        if (!entry.is_directory())
+        {
+            files.emplace_back(entry.path());
+        }
     }
 
     return files;

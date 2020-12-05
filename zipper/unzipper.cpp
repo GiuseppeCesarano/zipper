@@ -32,15 +32,15 @@ private:
     [[nodiscard]] ZipEntry currentEntryInfo() const
     {
         unz_file_info64 file_info = { 0 };
-        char filename_inzip[256] = { 0 };
+        std::array<char, 256> filename_inzip;
 
-        int err = unzGetCurrentFileInfo64(m_zf, &file_info, filename_inzip, sizeof(filename_inzip), nullptr, 0, nullptr, 0);
+        int err = unzGetCurrentFileInfo64(m_zf, &file_info, filename_inzip.data(), filename_inzip.size(), nullptr, 0, nullptr, 0);
         if (UNZ_OK != err)
         {
             throw std::runtime_error("Error, couln't get the current entry info");
         }
 
-        return ZipEntry(std::string(filename_inzip), file_info.compressed_size, file_info.uncompressed_size,
+        return ZipEntry({ filename_inzip.data() }, file_info.compressed_size, file_info.uncompressed_size,
                         file_info.tmu_date.tm_year, file_info.tmu_date.tm_mon, file_info.tmu_date.tm_mday,
                         file_info.tmu_date.tm_hour, file_info.tmu_date.tm_min, file_info.tmu_date.tm_sec, file_info.dosDate);
     }
@@ -75,7 +75,6 @@ private:
 
 
 public:
-
     bool extractCurrentEntryToFile(ZipEntry& entryinfo, const std::string& fileName)
     {
         int err = UNZ_OK;

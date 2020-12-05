@@ -63,7 +63,7 @@ private:
     };
 
 public:
-    ZipEntry(std::string  name, unsigned long long int compressed_size, unsigned long long int uncompressed_size,
+    ZipEntry(std::string name, unsigned long long int compressed_size, unsigned long long int uncompressed_size,
              int year, int month, int day, int hour, int minute, int second, unsigned long dosdate)
         : name(std::move(name)), compressedSize(compressed_size), uncompressedSize(uncompressed_size), dosdate(dosdate)
     {

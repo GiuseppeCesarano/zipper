@@ -210,7 +210,7 @@ struct Zipper::Impl
         }
         else
         {
-            throw std::runtime_error({"Error adding '" + nameInZip + "' to zip"});
+            throw std::runtime_error({ "Error adding '" + nameInZip + "' to zip" });
         }
 
         if (ZIP_OK == err)

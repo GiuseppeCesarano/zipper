@@ -1,11 +1,11 @@
 #pragma once
 
 extern "C" {
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <errno.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <cerrno>
 #include <fcntl.h>
 #include <sys/stat.h>
 
